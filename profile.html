@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile · EduSphere</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/store.js"></script>
+<script>guardRequireAuth();</script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<main class="section" style="padding-top:44px;">
+  <div class="container" style="max-width:640px;">
+    <span class="eyebrow">Identity</span>
+    <h1 style="font-size:1.9rem;">Your profile</h1>
+
+    <div class="card" style="display:flex; gap:20px; align-items:center; margin:24px 0;">
+      <img id="avatar-preview" src="" alt="Avatar preview" style="width:78px; height:78px; border-radius:50%; object-fit:cover; background:var(--surface-2); border:1px solid var(--border);">
+      <div>
+        <label class="btn btn-ghost btn-sm" for="avatar-input" style="cursor:pointer;">Upload profile photo</label>
+        <input type="file" id="avatar-input" accept="image/*" style="display:none;">
+        <p style="font-size:.76rem; margin:8px 0 0;">Stored as a Base64 string directly inside your local profile record.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <h3 style="font-size:1rem;">Account details</h3>
+      <table>
+        <tr><th>Username</th><td id="det-username"></td></tr>
+        <tr><th>Email</th><td id="det-email"></td></tr>
+        <tr><th>Role</th><td id="det-role"></td></tr>
+        <tr><th>Joined</th><td id="det-joined"></td></tr>
+        <tr><th>Wallet balance</th><td id="det-wallet"></td></tr>
+        <tr><th>Day streak</th><td id="det-streak"></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:1rem;">Theme</h3>
+      <p style="font-size:.82rem;">Changes the app's colour system across every page via a root-level attribute.</p>
+      <div style="display:flex; gap:12px;" id="theme-options">
+        <button class="btn btn-ghost btn-sm" data-theme-choice="aurora">Aurora (dark)</button>
+        <button class="btn btn-ghost btn-sm" data-theme-choice="dawn">Dawn (light)</button>
+        <button class="btn btn-ghost btn-sm" data-theme-choice="cyberpunk">Cyberpunk</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

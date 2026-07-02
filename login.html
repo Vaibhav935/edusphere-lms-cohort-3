@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In · EduSphere</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/store.js"></script>
+<script>guardRedirectIfLoggedIn();</script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<main class="section" style="padding-top:70px;">
+  <div class="container" style="max-width:420px;">
+    <div class="card">
+      <span class="eyebrow">Welcome back</span>
+      <h2>Log in to EduSphere</h2>
+      <form id="login-form" novalidate>
+        <div class="field" id="field-username">
+          <label for="username">Username or email</label>
+          <input type="text" id="username" autocomplete="username" required>
+          <div class="field-error">We couldn't find an account matching those details.</div>
+        </div>
+        <div class="field" id="field-password">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required>
+          <div class="field-error">Incorrect password. Try again.</div>
+        </div>
+        <label class="checkbox-row" style="margin-bottom:18px;">
+          <input type="checkbox" id="remember-me"> Remember my username on this device
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+      <p style="margin-top:16px; font-size:.85rem;">New here? <a href="register.html" style="color:var(--accent-2);">Create an account</a></p>
+      <p style="font-size:.76rem;">Admin demo login — username <code>admin</code> · password <code>Admin@123</code></p>
+    </div>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

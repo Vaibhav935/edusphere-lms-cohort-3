@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSphere — Learn by Building</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Client-side learning engine</span>
+      <h1>Master the web by rebuilding it, one lesson at a time.</h1>
+      <p class="lede">EduSphere is a self-paced curriculum on the DOM, asynchronous JavaScript, layout systems and structured data — taught through courses you actually finish, not just start.</p>
+      <div class="hero-ctas">
+        <a href="courses.html" class="btn btn-primary">Browse courses</a>
+        <a href="register.html" class="btn btn-ghost">Create free account</a>
+      </div>
+    </div>
+    <div class="constellation" aria-hidden="true">
+      <div class="orbit-ring r3"></div>
+      <div class="orbit-ring r2"><div class="orbit-node">⏱️</div></div>
+      <div class="orbit-ring r1"><div class="orbit-node">🧩</div></div>
+      <div class="core">🛰️</div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Featured courses</span>
+        <h2>Pulled straight from the course engine</h2>
+      </div>
+      <a href="courses.html" class="btn btn-ghost btn-sm">View all courses</a>
+    </div>
+    <div class="grid grid-3" id="featured-grid"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="card" style="max-width:640px; margin:0 auto; text-align:center;">
+      <span class="eyebrow">Student voices</span>
+      <p id="testimonial-text" style="font-size:1.05rem; color:var(--text); min-height:70px;"></p>
+      <strong id="testimonial-author" class="mono" style="color:var(--accent-2); font-size:.82rem;"></strong>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">EduSphere · a client-side learning prototype built with HTML, CSS &amp; JavaScript.</div>
+</footer>
+
+<script src="js/store.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const courses = DB.getCourses();
+
+  const featuredGrid = document.getElementById("featured-grid");
+  featuredGrid.innerHTML = courses.slice(0, 3).map(c => `
+    <div class="course-card">
+      <div class="course-thumb">${c.thumbnail}</div>
+      <span class="tag">${c.category}</span>
+      <h3 style="font-size:1.05rem;">${c.title}</h3>
+      <p style="font-size:.85rem;">${c.description}</p>
+      <div class="course-meta">
+        <span>${c.syllabus.flatMap(m => m.lessons).length} lessons</span>
+        <span class="rating">★ ${courseAverageRating(c) || "—"}</span>
+      </div>
+      <a href="course-details.html?id=${c.id}" class="btn btn-primary btn-sm" style="margin-top:6px;">₹${c.price} · View syllabus</a>
+    </div>
+  `).join("");
+
+  const testimonials = courses.flatMap(c => c.reviews.map(r => ({ ...r, course: c.title })));
+  let tIndex = 0;
+  const textEl = document.getElementById("testimonial-text");
+  const authorEl = document.getElementById("testimonial-author");
+
+  function renderTestimonial() {
+    const t = testimonials[tIndex];
+    if (!t) return;
+    textEl.style.opacity = 0;
+    setTimeout(() => {
+      textEl.textContent = `"${t.text}"`;
+      authorEl.textContent = `@${t.user} · ${t.course} · ${"★".repeat(t.rating)}`;
+      textEl.style.transition = "opacity .4s ease";
+      textEl.style.opacity = 1;
+    }, 250);
+  }
+  renderTestimonial();
+  setInterval(() => {
+    tIndex = (tIndex + 1) % testimonials.length;
+    renderTestimonial();
+  }, 4200);
+</script>
+</body>
+</html>

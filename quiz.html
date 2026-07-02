@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz · EduSphere</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/store.js"></script>
+<script>guardRequireAuth();</script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<main class="section" style="padding-top:44px;">
+  <div class="container" style="max-width:680px;">
+    <span class="eyebrow" id="quiz-course-name"></span>
+    <h1 id="quiz-lesson-name" style="font-size:1.6rem;"></h1>
+    <p style="font-size:.85rem;">Pass threshold: 70% or higher. Scoring below locks the quiz for a 2-minute cooldown.</p>
+
+    <div id="quiz-body"></div>
+
+    <div class="card" id="lock-card" style="display:none; text-align:center;">
+      <span class="eyebrow" style="color:var(--danger);">Locked</span>
+      <h3>Quiz locked</h3>
+      <p>You scored below 70%. Retry unlocks in:</p>
+      <div class="mono" id="cooldown-timer" style="font-size:2rem; margin-bottom:16px;">02:00</div>
+      <button class="btn btn-primary" id="retry-btn" disabled>Retry quiz</button>
+    </div>
+
+    <div class="card" id="result-card" style="display:none; text-align:center;">
+      <h3 id="result-heading"></h3>
+      <p id="result-detail"></p>
+      <a href="lesson.html" id="back-to-lesson-btn" class="btn btn-primary">Back to classroom</a>
+    </div>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

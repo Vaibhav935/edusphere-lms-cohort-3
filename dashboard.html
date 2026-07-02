@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · EduSphere</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/store.js"></script>
+<script>guardRequireAuth();</script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<main class="section" style="padding-top:48px;">
+  <div class="container">
+    <span class="eyebrow">Control center</span>
+    <h1 id="welcome-heading" style="font-size:1.9rem;">Welcome back</h1>
+
+    <div class="grid grid-4" style="margin:26px 0 40px;">
+      <div class="card stat-card"><div class="stat-value" id="stat-purchased">0</div><div class="stat-label">Courses owned</div></div>
+      <div class="card stat-card"><div class="stat-value" id="stat-completed">0</div><div class="stat-label">Courses completed</div></div>
+      <div class="card stat-card"><div class="stat-value" id="stat-avg">0%</div><div class="stat-label">Avg. completion</div></div>
+      <div class="card stat-card"><div class="stat-value" id="stat-streak">0 🔥</div><div class="stat-label">Day streak</div></div>
+    </div>
+
+    <div class="section-head">
+      <h2 style="font-size:1.25rem;">Continue learning</h2>
+      <a href="courses.html" class="btn btn-ghost btn-sm">Browse more courses</a>
+    </div>
+    <div id="activity-feed" class="grid grid-3"></div>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

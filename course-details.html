@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Details · EduSphere</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/store.js"></script>
+<script>guardRequireAuth();</script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<main class="section" style="padding-top:44px;">
+  <div class="container" id="details-root" style="display:grid; grid-template-columns:1.6fr 1fr; gap:30px; align-items:start;">
+    <div>
+      <span class="eyebrow" id="course-category"></span>
+      <h1 id="course-title" style="font-size:1.9rem;"></h1>
+      <p id="course-description"></p>
+      <div style="display:flex; gap:18px; color:var(--text-muted); font-size:.85rem; margin-bottom:26px;">
+        <span id="course-lesson-count"></span>
+        <span class="rating" id="course-rating"></span>
+      </div>
+
+      <h3 style="font-size:1.1rem;">Syllabus</h3>
+      <div id="syllabus-accordion"></div>
+
+      <h3 style="font-size:1.1rem; margin-top:34px;">Student reviews</h3>
+      <div id="review-list" style="margin-bottom:16px;"></div>
+      <div class="card" id="review-form-card">
+        <label for="review-text" style="font-size:.82rem; font-weight:600; color:var(--text-muted); display:block; margin-bottom:8px;">Leave a review</label>
+        <textarea id="review-text" rows="3" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); margin-bottom:10px;" placeholder="Share how this course went for you…"></textarea>
+        <select id="review-rating" style="padding:10px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); margin-bottom:10px;">
+          <option value="5">★★★★★ Excellent</option>
+          <option value="4">★★★★ Good</option>
+          <option value="3">★★★ Okay</option>
+          <option value="2">★★ Weak</option>
+          <option value="1">★ Poor</option>
+        </select>
+        <button class="btn btn-primary btn-sm" id="submit-review-btn">Post review</button>
+      </div>
+    </div>
+
+    <aside class="card" id="purchase-card" style="position:sticky; top:90px;">
+      <!-- filled dynamically -->
+    </aside>
+  </div>
+</main>
+
+<div class="modal-overlay" id="checkout-modal">
+  <div class="card modal">
+    <span class="modal-close" id="close-modal">✕</span>
+    <span class="eyebrow">Checkout</span>
+    <h3>Confirm your purchase</h3>
+    <div class="field">
+      <label>Coupon code</label>
+      <div style="display:flex; gap:8px;">
+        <input type="text" id="coupon-input" placeholder="e.g. EDU30">
+        <button class="btn btn-ghost btn-sm" id="apply-coupon-btn">Apply</button>
+      </div>
+    </div>
+    <div style="font-size:.9rem; margin:16px 0; border-top:1px solid var(--border); padding-top:14px;">
+      <div style="display:flex; justify-content:space-between;"><span>Subtotal</span><span id="chk-subtotal"></span></div>
+      <div style="display:flex; justify-content:space-between; color:var(--success);"><span>Discount</span><span id="chk-discount">₹0</span></div>
+      <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.05rem; margin-top:8px;"><span>Total</span><span id="chk-total"></span></div>
+    </div>
+    <button class="btn btn-primary btn-block" id="confirm-purchase-btn">Confirm &amp; enroll</button>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/course-details.js"></script>
+</body>
+</html>

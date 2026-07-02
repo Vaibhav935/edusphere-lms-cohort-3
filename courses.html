@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses · EduSphere</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/store.js"></script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar-mount"></nav>
+
+<main class="section" style="padding-top:48px;">
+  <div class="container">
+    <span class="eyebrow">Catalog</span>
+    <h1 style="font-size:1.9rem;">All courses</h1>
+
+    <div class="card" style="display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin:22px 0 30px;">
+      <input type="text" id="search-input" placeholder="Search courses by title or topic…" style="flex:1; min-width:220px; padding:12px 14px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text);">
+      <div id="category-checkboxes" style="display:flex; gap:14px; flex-wrap:wrap;"></div>
+    </div>
+
+    <div id="results-count" style="color:var(--text-muted); font-size:.85rem; margin-bottom:14px;"></div>
+    <div id="course-grid" class="grid grid-3"></div>
+
+    <section style="margin-top:60px;" id="kanban-section">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Personal planner</span>
+          <h2 style="font-size:1.2rem;">Sort courses into your own plan</h2>
+        </div>
+        <p style="max-width:340px; font-size:.8rem; margin:0;">Drag cards between columns — tracked with raw mouse coordinates, no native drag-and-drop API.</p>
+      </div>
+      <div class="kanban-board" id="kanban-board">
+        <div class="kanban-col" data-col="backlog"><h4>Backlog</h4><div class="kanban-cards" id="col-backlog"></div></div>
+        <div class="kanban-col" data-col="inprogress"><h4>In progress</h4><div class="kanban-cards" id="col-inprogress"></div></div>
+        <div class="kanban-col" data-col="done"><h4>Done</h4><div class="kanban-cards" id="col-done"></div></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/courses.js"></script>
+</body>
+</html>
