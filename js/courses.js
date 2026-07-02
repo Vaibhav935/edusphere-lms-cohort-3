@@ -80,17 +80,30 @@ if (!activeUser) {
   let dragState = null;
 
   function onDragStart(e) {
+    // Prevent highlighting text/selections while moving mouse around
+    e.preventDefault();
+    
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
+    
     dragState = {
       id: card.dataset.id,
       offsetX: e.clientX - rect.left,
-      offsetY: e.clientY - rect.top,
-      width: rect.width
+      offsetY: e.clientY - rect.top
     };
+    
     card.classList.add("dragging");
+    
+    /* ---------------------------------------------------------------------
+       FIXED MATRIX: Lock the card to its exact pixel width and fix position
+       relative to view viewport. We DO NOT append to body anymore, eliminating
+       the visual alignment drop-down breakdown.
+       --------------------------------------------------------------------- */
     card.style.width = rect.width + "px";
-    document.body.appendChild(card);
+    card.style.position = "fixed";
+    card.style.zIndex = "10000";
+    card.style.pointerEvents = "none"; // Keeps mouse events passing down to columns
+    
     moveCardTo(card, e.clientX, e.clientY);
 
     document.addEventListener("mousemove", onDragMove);
@@ -114,6 +127,8 @@ if (!activeUser) {
     if (!card || !dragState) return;
 
     let targetCol = null;
+    
+    // Scan column areas relative to current mouse coordinates
     document.querySelectorAll(".kanban-col").forEach(col => {
       const rect = col.getBoundingClientRect();
       if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
@@ -121,11 +136,14 @@ if (!activeUser) {
       }
     });
 
+    // Reset styles seamlessly
     card.classList.remove("dragging");
     card.style.position = "";
     card.style.left = "";
     card.style.top = "";
     card.style.width = "";
+    card.style.zIndex = "";
+    card.style.pointerEvents = "";
 
     if (targetCol) {
       ["backlog", "inprogress", "done"].forEach(col => {
@@ -134,6 +152,7 @@ if (!activeUser) {
       activeUser.planner[targetCol].push(dragState.id);
       persistUser(activeUser);
     }
+    
     dragState = null;
     renderKanban();
   }
